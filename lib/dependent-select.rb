@@ -1,6 +1,6 @@
 require "formtastic"
 require "dependent_select/version"
-require 'dependent_select/semantic_form_builder'
+require 'dependent_select/dependent_select_input'
 require "dependent_select/engine"
 
 module DependentSelect
