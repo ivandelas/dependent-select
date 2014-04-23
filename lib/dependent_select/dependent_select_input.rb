@@ -41,7 +41,10 @@ module Formtastic
                 $('##{html_options[:id]}').dependentSelect('#{options[:parent_id]}',
                                                            '#{options[:url_template]}',
                                                            #{js_options.to_json});
-                $('##{options[:parent_id]}').trigger('change');
+                $('##{options[:parent_id]}').trigger('change',
+                                                     function() {
+                                                       $('##{html_options[:id]}').val('#{object.send(input_name)}');
+                                                     });
               });
             </script>".html_safe
 
