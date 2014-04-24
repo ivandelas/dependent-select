@@ -29,7 +29,7 @@ The default URL template can also be overridden globally:
 
 The server must return JSON records.  The new `option` tags are then generated via the `option_template`, which defaults to:
 
-    <option value="${id}">${name}</option>
+    <option value="{{id}}">{{name}}</option>
 
 If the returned objects do not have an `id` and `name` attribute, `option_template` must be overridden.
 
