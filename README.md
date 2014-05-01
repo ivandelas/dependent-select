@@ -17,13 +17,13 @@ In this example each `Department` has many `Divisions`.  Whenever the department
 
 The URL used to request the updated option values is controlled by a simple template option, `url_template`, which defaults to:
 
-    /${plural_parent_resource_name}/${value}/${plural_resource_name}.json
+    /{{plural_parent_resource_name}}/{{value}}/{{plural_resource_name}}.json
 
 In the above example, assuming the selected department ID is 47, this would translate to `/departments/47/divisions.json`
 
 The default URL template can also be overridden globally:
 
-    DependentSelect.default_url_template = '/${plural_resource_name}.json?${parent_resource_name}=${value}'
+    DependentSelect.default_url_template = '/{{plural_resource_name}}.json?{{parent_resource_name}}={{value}}'
 
 ## Option template ##
 
