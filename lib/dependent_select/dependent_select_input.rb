@@ -16,13 +16,14 @@ module Formtastic
           child_reflection = reflection_for(method)
           parent_reflection = reflection_for(options[:parent_method])
 
+          # TODO: use Mustache#ruby instead of gsub for templating.
           if child_reflection && parent_reflection && parent_reflection.macro == :belongs_to
             options[:url_template] ||= DependentSelect.default_url_template
-              .gsub('${resource_name}', child_reflection.class_name.underscore)
-              .gsub('${plural_resource_name}', child_reflection.class_name.underscore.pluralize)
-              .gsub('${parent_resource_name}', parent_reflection.class_name.underscore)
-              .gsub('${plural_parent_resource_name}', parent_reflection.class_name.underscore.pluralize)
-              .gsub('${parent_parameter}', parent_reflection.foreign_key.to_s)
+              .gsub('{{resource_name}}', child_reflection.class_name.underscore)
+              .gsub('{{plural_resource_name}}', child_reflection.class_name.underscore.pluralize)
+              .gsub('{{parent_resource_name}}', parent_reflection.class_name.underscore)
+              .gsub('{{plural_parent_resource_name}}', parent_reflection.class_name.underscore.pluralize)
+              .gsub('{{parent_parameter}}', parent_reflection.foreign_key.to_s)
           end
 
         end
