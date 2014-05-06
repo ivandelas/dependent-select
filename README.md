@@ -36,4 +36,15 @@ The server must return JSON records.  The new `option` tags are then generated v
 
 If the returned objects do not have an `id` and `name` attribute, `option_template` must be overridden.
 
+    <%= semantic_form_for @user do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :department, :as => :select,
+                               :collection => Department.find(:all) %>
+      <%= f.input :division,   :as => :dependent_select,
+                               :parent_method => :department,
+                               :option_template => '<option value="{{identifier}}">{{some_name}}</option>',
+                               :collection => (@user.department ? @user.department.divisions : []) %>
+    <% end %>
+    <% end %>
+
 
