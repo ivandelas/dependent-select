@@ -6,8 +6,11 @@ dependent-select is a Formtastic 2.0 compatible extension which provides a `sele
 
     <%= semantic_form_for @user do |f| %>
     <%= f.inputs do %>
-      <%= f.input :department, :as => :select,           :collection => Department.find(:all) %>
-      <%= f.input :division,   :as => :dependent_select, :parent_method => :department, :collection => (@user.department ? @user.department.divisions : []) %>
+      <%= f.input :department, :as => :select,
+                               :collection => Department.find(:all) %>
+      <%= f.input :division,   :as => :dependent_select,
+                               :parent_method => :department,
+                               :collection => (@user.department ? @user.department.divisions : []) %>
     <% end %>
     <% end %>
 
