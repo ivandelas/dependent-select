@@ -5,10 +5,13 @@ dependent-select is a Formtastic 2.0 compatible extension which provides a `sele
 ## Simple Example ##
 
     <%= semantic_form_for @user do |f| %>
-    <%= f.inputs do %>
-      <%= f.input :department, :as => :select,           :collection => Department.find(:all) %>
-      <%= f.input :division,   :as => :dependent_select, :parent_method => :department, :collection => (@user.department ? @user.department.divisions : []) %>
-    <% end %>
+      <%= f.inputs do %>
+        <%= f.input :department, :as => :select,
+                                 :collection => Department.find(:all) %>
+        <%= f.input :division,   :as => :dependent_select,
+                                 :parent_method => :department,
+                                 :collection => (@user.department ? @user.department.divisions : []) %>
+      <% end %>
     <% end %>
 
 In this example each `Department` has many `Divisions`.  Whenever the department field changes value, the division field is updated to contain only the `Divisions` of the selected `Department`.
@@ -33,4 +36,30 @@ The server must return JSON records.  The new `option` tags are then generated v
 
 If the returned objects do not have an `id` and `name` attribute, `option_template` must be overridden.
 
+    <%= semantic_form_for @user do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :department, :as => :select,
+                                 :collection => Department.find(:all) %>
+        <%= f.input :division,   :as => :dependent_select,
+                                 :parent_method => :department,
+                                 :option_template => '<option value="{{identifier}}">{{some_name}}</option>',
+                                 :collection => (@user.department ? @user.department.divisions : []) %>
+      <% end %>
+    <% end %>
 
+When you'd like to add a blank option before your returned options, you can set `include_blank` to `true`.
+
+If you wish to change the display text of this blank option, the `blank_option_html` must be overridden and `include_blank` set to `true`.
+
+    <%= semantic_form_for @user do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :department, :as => :select,
+                                 :collection => Department.find(:all) %>
+        <%= f.input :division,   :as => :dependent_select,
+                                 :parent_method => :department,
+                                 :option_template => '<option value="{{identifier}}">{{some_name}}</option>',
+                                 :include_blank => true
+                                 :blank_option_html => '<option>{{some_text}}</option>'
+                                 :collection => (@user.department ? @user.department.divisions : []) %>
+      <% end %>
+    <% end %>
