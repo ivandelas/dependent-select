@@ -47,9 +47,9 @@ If the returned objects do not have an `id` and `name` attribute, `option_templa
       <% end %>
     <% end %>
 
-When you like to have blank selection option on top of your returned options, you can set the option `include_blank` to `true`.
+When you'd like to add a blank option before your returned options, you can set `include_blank` to `true`.
 
-If you want to change the text in the blank option, the `blank_option_html` must be overridden and `include_blank` set to `true`.
+If you wish to change the display text of this blank option, the `blank_option_html` must be overridden and `include_blank` set to `true`.
 
     <%= semantic_form_for @user do |f| %>
       <%= f.inputs do %>
