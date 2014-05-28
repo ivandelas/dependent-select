@@ -66,7 +66,7 @@ If you wish to change the display text of this blank option, the `blank_option_h
 
 #To Do:
 
-Publish to Rubygems
+- Publish to Rubygems
 
 #Contributing
 
